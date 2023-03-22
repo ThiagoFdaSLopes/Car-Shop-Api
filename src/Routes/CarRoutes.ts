@@ -5,6 +5,11 @@ const carsController = new CarController();
 
 const carsRouter = Router();
 
+carsRouter.put(
+  '/:id', 
+  (req: Request, res: Response, next: NextFunction) => carsController.UpdateVehicle(req, res, next),
+);
+
 carsRouter.post(
   '/', 
   (req: Request, res: Response, next: NextFunction) => carsController.createCar(req, res, next),
