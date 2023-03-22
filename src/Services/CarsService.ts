@@ -46,6 +46,14 @@ class CarsService {
 
     return result;
   }
+
+  public async UpdateCar(obj: ICar, id: string): Promise<ICar | null> {
+    if (!isValidObjectId(id)) throw new ErrorTeste('Invalid mongo id', 422);
+    const vehicleExist = await this._modelODM.findById(id);
+    if (vehicleExist === null) throw new ErrorTeste('Car not found', 404);
+    const result = await this._modelODM.updateVehicle(id, obj);
+    return this.createCarDomain(result);
+  }
 }
 
 export default CarsService;
