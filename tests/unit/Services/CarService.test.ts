@@ -115,6 +115,84 @@ describe('Testes da Model Cars', function () {
     }
   });
 
+  it('Atualizando um veiculo com id Errado', async function () {
+    // Arrange
+    const id = '634852326b35b59438fbea09';
+    const carUpdate = {
+      model: 'Marea',
+      year: 2022,
+      color: 'White',
+      status: true,
+      buyValue: 15.99,
+      doorsQty: 4,
+      seatsQty: 5,
+    };
+    // Action
+    Sinon.stub(Model, 'findByIdAndUpdate').resolves(null);
+    const service = new CarsService(new CarsODM());
+    try {
+      await service.UpdateCar(carUpdate, id);
+    } catch (error) {
+      expect((error as ErrorTeste).message).to.be.deep.equal('Car not found');
+    }
+    // Assertion
+  });
+
+  it('Atualizando um veiculo com mongoId Errado', async function () {
+    // Arrange
+    const id = 'invalid_id';
+    const carUpdate = {
+      model: 'Marea',
+      year: 2022,
+      color: 'White',
+      status: true,
+      buyValue: 15.99,
+      doorsQty: 4,
+      seatsQty: 5,
+    };
+    // Action
+    // Sinon.stub(Model).resolves(null);
+    const service = new CarsService(new CarsODM());
+    try {
+      await service.UpdateCar(carUpdate, id);
+    } catch (error) {
+      expect((error as ErrorTeste).message).to.be.deep.equal('Invalid mongo id');
+    }
+    // Assertion
+  });
+
+  it('Atualizando carro com sucesso', async function () {
+    // arrange
+    const id = '634852326b35b59438fbea2f';
+    const car = {
+      id: '634852326b35b59438fbea2f',
+      model: 'Marea',
+      year: 2002,
+      color: 'Black',
+      status: true,
+      buyValue: 15.99,
+      doorsQty: 4,
+      seatsQty: 5,
+    };
+    const carUpdate = {
+      model: 'Marea',
+      year: 2022,
+      color: 'White',
+      status: true,
+      buyValue: 15.99,
+      doorsQty: 4,
+      seatsQty: 5,
+    };
+    Sinon.stub(Model, 'findByIdAndUpdate').resolves(car);
+    const service = new CarsService(new CarsODM());
+    
+    // act
+    const result = await service.UpdateCar(carUpdate, id);
+    
+    // assert
+    expect(result).to.be.deep.equal(car);
+  });
+
   afterEach(function () {
     Sinon.restore();
   });
