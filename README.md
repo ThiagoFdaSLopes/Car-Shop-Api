@@ -1,4 +1,4 @@
-# Blog Api 
+# Car Shop Api
 
 Para este projeto, foi desenvolvido uma api para aplicar os princípios de Programação Orientada a Objetos (POO) e a construção de uma API com CRUD para gerenciar uma concessionária de veículos. Isso foi realizado utilizando o banco de dados MongoDB através do framework do Mongoose.  
 
