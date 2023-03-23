@@ -124,7 +124,7 @@ Foram encontradas 2 possíveis soluções para este problema:
 #### Buscar carro por ID
 
 ```http
-  POST /cars/:id
+  GET /cars/:id
   ```
 | Parâmetro   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
@@ -134,7 +134,7 @@ Foram encontradas 2 possíveis soluções para este problema:
 #### Buscar motorcycle por ID
 
 ```http
-  POST /motorcycles/:id
+  GET /motorcycles/:id
   ```
 | Parâmetro   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
