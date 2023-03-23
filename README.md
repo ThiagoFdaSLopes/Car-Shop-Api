@@ -57,3 +57,102 @@ Foram encontradas 2 possíveis soluções para este problema:
 * Você pode adicionar manualmente nos arquivos .bashrc, .zshenv ou .zshrc do seu computador a linha export DOCKER_DEFAULT_PLATFORM=linux/amd64, essa é uma solução global. As soluções foram com base nesta fonte. 
 
 # Rotas Da Api
+
+#### Criar um carro
+```http
+  POST /cars
+```
+
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `model` | `string` | **Obrigatório no body**. |
+| `year` | `number` | **Obrigatório no body**. |
+| `color` | `string` | **Obrigatório no body**. |
+| `status` | `boolean` | **Nao e Obrigatório no body**. |
+| `buyValue` | `number` | **Obrigatório no body**. |
+| `doorsQty` | `number` | **Obrigatório no body**. |
+| `seatsQty` | `number` | **Obrigatório no body**. |
+
+#### Criar um motorcycle
+
+```http
+  POST /motorcycles
+```
+
+| Parâmetro   | Tipo       | Descrição                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `model` | `string` | **Obrigatório no body**. |
+| `year` | `number` | **Obrigatório no body**. |
+| `color` | `string` | **Obrigatório no body**. |
+| `status` | `boolean` | **Nao e Obrigatório no body**. |
+| `buyValue` | `number` | **Obrigatório no body**. |
+| `category` | `string` | **Obrigatório no body**. |
+| `engineCapacity` | `number` | **Obrigatório no body**. |
+
+#### Atualizar um carro
+
+```http
+  PUT /cars/:id <--(Precisa ser um id mongoID valido)
+```
+
+| Parâmetro   | Tipo       | Descrição                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `model` | `string` | **Obrigatório no body**. |
+| `year` | `number` | **Obrigatório no body**. |
+| `color` | `string` | **Obrigatório no body**. |
+| `status` | `boolean` | **Nao e Obrigatório no body**. |
+| `buyValue` | `number` | **Obrigatório no body**. |
+| `doorsQty` | `string` | **Obrigatório no body**. |
+| `seatsQty` | `number` | **Obrigatório no body**. |
+
+#### Atualizar um motorcycle
+
+```http
+  PUT /motorcycles/:id <--(Precisa ser um id mongoID valido)
+```
+
+| Parâmetro   | Tipo       | Descrição                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `model` | `string` | **Obrigatório no body**. |
+| `year` | `number` | **Obrigatório no body**. |
+| `color` | `string` | **Obrigatório no body**. |
+| `status` | `boolean` | **Nao e Obrigatório no body**. |
+| `buyValue` | `number` | **Obrigatório no body**. |
+| `category` | `string` | **Obrigatório no body**. |
+| `engineCapacity` | `number` | **Obrigatório no body**. |
+
+#### Buscar carro por ID
+
+```http
+  POST /cars/:id
+  ```
+| Parâmetro   | Tipo       | Descrição                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `id`      | `string` | **Obrigatório no params da rota**.  |
+
+
+#### Buscar motorcycle por ID
+
+```http
+  POST /motorcycles/:id
+  ```
+| Parâmetro   | Tipo       | Descrição                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `id`      | `string` | **Obrigatório no params da rota**.  |
+
+#### Pegar todos carros da loja
+
+```http
+  GET /cars
+  ```
+#### Pegar todas as motorcycles da loja
+
+```http
+  GET /motorcycles
+  ```
+
+Qualquer duvida entre em contato comigo:
+
+E-mail: programadorthiagolopes@gmail.com
+
+Linkedin: https://www.linkedin.com/in/thiago-lopes-dev-/
