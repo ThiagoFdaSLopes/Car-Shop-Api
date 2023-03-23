@@ -11,7 +11,7 @@ class MotorcycleService {
     this._modelODM = modelODM;
   }
 
-  public async createCar(objMoto: IMotorcycle): Promise<IMotorcycle | null> {
+  public async createMotor(objMoto: IMotorcycle): Promise<IMotorcycle | null> {
     const created = await this._modelODM.create(objMoto);
     return new Motorcycle(created).MotorCiclyModel();
   }
