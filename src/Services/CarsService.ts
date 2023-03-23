@@ -11,24 +11,16 @@ class CarsService {
     this._modelODM = modelODM;
   }
 
-  private createCarDomain(car: ICar | null): ICar | null {
-    if (car) {
-      const teste = new Car(car);
-      return teste.CarModel();
-    }
-    return null;
-  }
-
   public async createCar(objCar: ICar): Promise<ICar | null> {
     const created = await this._modelODM.create(objCar);
-    return this.createCarDomain(created);
+    return new Car(created).CarModel();
   }
 
   public async findCars(id: string): Promise<ICar | null> {
     if (!isValidObjectId(id)) throw new ErrorTeste('Invalid mongo id', 422);
     const cars = await this._modelODM.findById(id);
     if (cars === null) throw new ErrorTeste('Car not found', 404);
-    return this.createCarDomain(cars);
+    return new Car(cars).CarModel();
   }
 
   public async findAllCars(): Promise<ICar[] | null> {
@@ -49,10 +41,9 @@ class CarsService {
 
   public async UpdateCar(obj: ICar, id: string): Promise<ICar | null> {
     if (!isValidObjectId(id)) throw new ErrorTeste('Invalid mongo id', 422);
-    const vehicleExist = await this._modelODM.findById(id);
-    if (vehicleExist === null) throw new ErrorTeste('Car not found', 404);
     const result = await this._modelODM.updateVehicle(id, obj);
-    return this.createCarDomain(result);
+    if (!result) throw new ErrorTeste('Car not found', 404);
+    return new Car(result).CarModel();
   }
 }
 
