@@ -6,6 +6,8 @@ import ErrorTeste from '../utils/ClassError';
 
 class MotorcycleService {
   private _modelODM: MotorcycleODM;
+  readonly invalidMongoId: string = 'Invalid mongo id';
+  readonly carNotFound: string = 'Motorcycle not found';
 
   constructor(modelODM: MotorcycleODM) {
     this._modelODM = modelODM;
@@ -17,9 +19,9 @@ class MotorcycleService {
   }
 
   public async findMotors(id: string): Promise<IMotorcycle | null> {
-    if (!isValidObjectId(id)) throw new ErrorTeste('Invalid mongo id', 422);
+    if (!isValidObjectId(id)) throw new ErrorTeste(this.invalidMongoId, 422);
     const motors = await this._modelODM.findById(id);
-    if (motors === null) throw new ErrorTeste('Motorcycle not found', 404);
+    if (motors === null) throw new ErrorTeste(this.carNotFound, 404);
     return new Motorcycle(motors).MotorCiclyModel();
   }
 
@@ -40,10 +42,17 @@ class MotorcycleService {
   }
 
   public async UpdateMoto(obj: IMotorcycle, id: string): Promise<IMotorcycle | null> {
-    if (!isValidObjectId(id)) throw new ErrorTeste('Invalid mongo id', 422);
+    if (!isValidObjectId(id)) throw new ErrorTeste(this.invalidMongoId, 422);
     const result = await this._modelODM.updateVehicle(id, obj);
-    if (!result) throw new ErrorTeste('Motorcycle not found', 404);
+    if (!result) throw new ErrorTeste(this.carNotFound, 404);
     return new Motorcycle(result).MotorCiclyModel();
+  }
+
+  public async DeleteCar(id: string): Promise<IMotorcycle | null> {
+    if (!isValidObjectId(id)) throw new ErrorTeste(this.invalidMongoId, 422);
+    const result = await this._modelODM.deleteVehicle(id);
+    if (result === null) throw new ErrorTeste(this.carNotFound, 404);
+    return result;
   }
 }
 
