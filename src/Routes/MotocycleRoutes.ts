@@ -5,6 +5,15 @@ const motorcycleController = new MotorcycleController();
 
 const motocycleRouter = Router();
 
+motocycleRouter.put(
+  '/:id', 
+  (
+    req: Request,
+    res: Response, 
+    next: NextFunction,
+  ) => motorcycleController.UpdateMotorcycle(req, res, next),
+);
+
 motocycleRouter.post(
   '/',
   (
@@ -12,6 +21,24 @@ motocycleRouter.post(
     res: Response, 
     next: NextFunction,
   ) => motorcycleController.createMotorCycle(req, res, next),
+);
+
+motocycleRouter.get(
+  '/:id', 
+  (
+    req: Request, 
+    res: Response, 
+    next: NextFunction,
+  ) => motorcycleController.findMotorById(req, res, next),
+);
+
+motocycleRouter.get(
+  '/', 
+  (
+    req: Request, 
+    res: Response, 
+    next: NextFunction,
+  ) => motorcycleController.findAllMotoCycles(req, res, next),
 );
 
 export default motocycleRouter;
