@@ -41,4 +41,13 @@ motocycleRouter.get(
   ) => motorcycleController.findAllMotoCycles(req, res, next),
 );
 
+motocycleRouter.delete(
+  '/:id', 
+  (
+    req: Request,
+    res: Response, 
+    next: NextFunction,
+  ) => motorcycleController.DeleteVehicle(req, res, next),
+);
+
 export default motocycleRouter;
