@@ -25,4 +25,9 @@ carsRouter.get(
   (req: Request, res: Response, next: NextFunction) => carsController.findAllCars(req, res, next),
 );
 
+carsRouter.delete(
+  '/:id', 
+  (req: Request, res: Response, next: NextFunction) => carsController.DeleteVehicle(req, res, next),
+);
+
 export default carsRouter;
