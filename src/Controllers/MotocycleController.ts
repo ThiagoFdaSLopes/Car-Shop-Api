@@ -13,7 +13,7 @@ class MotorcycleController {
   ): Promise<Response | undefined> {
     const moto: IMotorcycle = { ...req.body };
     try {
-      const carCreated = await this.motorcycleService.createCar(moto);
+      const carCreated = await this.motorcycleService.createMotor(moto);
       return res.status(201).json(carCreated);
     } catch (error) {
       next(error);
